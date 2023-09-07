@@ -23,7 +23,7 @@ Add this to @ox_inventory/data/items.lua
 	},
 ```
 
-Add this to your context script
+Add this to your context script (ox_lib based)
 ```
 lib.registerContext({
     id = 'police_documents_menu',
