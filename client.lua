@@ -43,38 +43,38 @@ Citizen.CreateThread(function()
 
 end)
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(0)
 
-        if UI_MOUSE_FOCUS == true then
+--         if UI_MOUSE_FOCUS == true then
 
-            --[[
-            if IsControlJustReleased(0, 142) then -- MeleeAttackAlternate
-                --SendNUIMessage({type = "click"})
+--             --[[
+--             if IsControlJustReleased(0, 142) then -- MeleeAttackAlternate
+--                 --SendNUIMessage({type = "click"})
 
-            end
-            --]]
-        end
+--             end
+--             --]]
+--         end
 
-        if IsControlJustReleased(0, Config.MenuKey) and GetLastInputMethod(2) then
-            Menu.hidden = false
-            OpenMainMenu()
+--         if IsControlJustReleased(0, Config.MenuKey) and GetLastInputMethod(2) then
+--             Menu.hidden = false
+--             OpenMainMenu()
 
-            --[[
-            SetNuiFocus(true, true)
-			SendNUIMessage({
-        		type = "ShowDocument",
-        		enable = true
-   			})
-            UI_MOUSE_FOCUS = true
-            --]]
+--             --[[
+--             SetNuiFocus(true, true)
+-- 			SendNUIMessage({
+--         		type = "ShowDocument",
+--         		enable = true
+--    			})
+--             UI_MOUSE_FOCUS = true
+--             --]]
 
-    	end
+--     	end
 
-        Menu.renderGUI(MENU_OPTIONS)
-    end
- end)
+--         Menu.renderGUI(MENU_OPTIONS)
+--     end
+--  end)
 
 function OpenMainMenu()
     ClearMenu()
@@ -128,8 +128,8 @@ function CopyToNearestPlayers(aDocument)
     Menu.addButton(_U('close_bt'), "CloseMenu", nil)
 end
 
-RegisterNetEvent('mydocuments:show')
-AddEventHandler('mydocuments:show', function(item, wait, cb, aDocument)
+RegisterNetEvent('esx_documents:viewdocuments')
+AddEventHandler('esx_documents:viewdocuments', function(item, wait, cb, aDocument)
     local metadata = ESX.GetPlayerData().inventory[item.slot].metadata
     --local aDocument = metadata.aDocument
     local aDocument = metadata.adocs
@@ -185,9 +185,9 @@ end
 function OpenFormPropertiesMenu(aDocument)
     ClearMenu()
     Menu.addButton(_U('view_bt'), "ViewDocument", aDocument.data)
-    Menu.addButton(_U('show_bt'), "ShowToNearestPlayers", aDocument.data)
-    Menu.addButton(_U('give_copy'), "CopyToNearestPlayers", aDocument.data)
-    Menu.addButton(_U('delete_bt'), "OpenDeleteFormMenu", aDocument)
+    -- Menu.addButton(_U('show_bt'), "ShowToNearestPlayers", aDocument.data)
+    -- Menu.addButton(_U('give_copy'), "CopyToNearestPlayers", aDocument.data)
+    -- Menu.addButton(_U('delete_bt'), "OpenDeleteFormMenu", aDocument)
     Menu.addButton(_U('go_back'), "OpenMyDocumentsMenu", nil)
     Menu.addButton(_U('close_bt'), "CloseMenu", nil)
     Menu.hidden = false
@@ -228,9 +228,10 @@ function DeleteDocument(aDocument)
     end, aDocument.id)
 end
 
-function CreateNewForm(aDocument)
+function CreateNewForm(documentType)
 
     PlayerData = ESX.GetPlayerData()
+    aDocument = DOCUMENT_FORMS[PlayerData.job.name][documentType]
     ESX.TriggerServerCallback('esx_documents:getPlayerDetails', function (cb_player_details)
         if cb_player_details ~= nil then
             --print("Received dump : " .. dump(cb_player_details))
@@ -350,3 +351,49 @@ function dump(o)
       return tostring(o)
    end
 end
+
+exports.ox_target:addBoxZone({
+    coords = Config.PoliceDocuments.coords,
+    rotation = Config.PoliceDocuments.rotation,
+    debug = false,
+    options = {{
+        name = 'documents_one',
+        icon = 'fas fa-car',
+        label = 'OPEN POLICE DOCUMENTS',
+        canInteract = function()
+            local playerPed = PlayerId()
+            local playerJob = ESX.GetPlayerData().job
+
+            return playerJob.name == 'police'
+        end,
+        onSelect = function()
+            lib.showContext('police_documents_menu')
+        end
+    }},
+})
+
+exports.ox_target:addBoxZone({
+    coords = Config.AmbulanceDocuments.coords,
+    rotation = Config.AmbulanceDocuments.rotation,
+    debug = false,
+    options = {{
+        name = 'documents_two',
+        icon = 'fas fa-file',
+        label = 'OPEN AMBULANCE DOCUMENTS',
+        canInteract = function()
+            local playerPed = PlayerId()
+            local playerJob = ESX.GetPlayerData().job
+
+            return playerJob.name == 'ambulance'
+        end,
+        onSelect = function()
+            lib.showContext('ambulance_documents_menu')
+        end
+    }},
+})
+
+RegisterNetEvent('esx_documents:createnewdocument')
+AddEventHandler('esx_documents:createnewdocument', function(document)
+    print(document)
+    CreateNewForm(document)
+end)

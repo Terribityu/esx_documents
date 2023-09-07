@@ -5,6 +5,8 @@ author 'Apoiat'
 description 'Document script | A document script for FiveM: Write / delete / sign documents | Copy documents to other people | connected to a database | ESX'
 version '1.1'
 
+lua54 "yes"
+
 ui_page 'html/form.html'
 
 files {
@@ -25,7 +27,8 @@ files {
 
 shared_script {
 	'config.lua',
-	'@es_extended/imports.lua'
+	'@es_extended/imports.lua',
+	"@ox_lib/init.lua"
 }
 
 server_scripts {

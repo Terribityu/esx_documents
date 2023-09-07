@@ -69,23 +69,23 @@ Config.Documents['en'] = {
       },
       ["police"] = {
         {
-          headerTitle = "SPECIAL PARKING PERMIT",
-          headerSubtitle = "Special no-limit parking permit.",
-          elements = {
-            { label = "HOLDER FIRSTNAME", type = "input", value = "", can_be_emtpy = false },
-            { label = "HOLDER LASTNAME", type = "input", value = "", can_be_emtpy = false },
-            { label = "VALID UNTIL", type = "input", value = "", can_be_empty = false },
-            { label = "INFORMATION", type = "textarea", value = "THE AFOREMENTIONED CITIZEN HAS BEEN GRANTED UNLIMITED PARKING PERMIT IN EVERY CITY ZONE AND IS VALID UNTIL THE AFOREMENTIONED EXPIRATION DATE.", can_be_emtpy = false },
-          }
-        },
-        {
-          headerTitle = "GUN PERMIT",
+          headerTitle = "WEAPON'S PERMIT",
           headerSubtitle = "Special gun permit provided by the police.",
           elements = {
             { label = "HOLDER FIRSTNAME", type = "input", value = "", can_be_emtpy = false },
             { label = "HOLDER LASTNAME", type = "input", value = "", can_be_emtpy = false },
             { label = "VALID UNTIL", type = "input", value = "", can_be_empty = false },
             { label = "INFORMATION", type = "textarea", value = "THE AFOREMENTIONED CITIZEN IS ALLOWED AND GRANTED A GUN PERMIT WHICH WILL BE VALID UNTIL THE AFOREMENTIONED EXPIRATION DATE.", can_be_emtpy = false },
+          }
+        },
+        {
+          headerTitle = "Student Driver Permit",
+          headerSubtitle = "Special student driver permit by the police.",
+          elements = {
+            { label = "HOLDER FIRSTNAME", type = "input", value = "", can_be_emtpy = false },
+            { label = "HOLDER LASTNAME", type = "input", value = "", can_be_emtpy = false },
+            { label = "VALID UNTIL", type = "input", value = "", can_be_empty = false },
+            { label = "INFORMATION", type = "textarea", value = "THE AFOREMENTIONED CITIZEN HAS BEEN GRANTED A STUDENT DRIVER PERMIT IN EVERY CITY ZONE AND IS VALID UNTIL THE AFOREMENTIONED EXPIRATION DATE.", can_be_emtpy = false },
           }
         },
         {

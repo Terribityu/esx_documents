@@ -1,3 +1,4 @@
+<div align="center">
 
 # ESX Documents
 
@@ -10,7 +11,7 @@ This is a modified esx_documents that allows you to create an item using ox_inve
 Add esx_documents to server.cfg
 
 Add this to @ox_inventory/data/items.lua
-```
+
 ["documents"] = {
 		label = "Documents",
 		weight = 50,
@@ -22,7 +23,7 @@ Add this to @ox_inventory/data/items.lua
 			event = "mydocuments:show",
 		},
 	},
-```
+
 ### Official esx_documents
 ```
 https://github.com/apoiat/ESX_Documents
