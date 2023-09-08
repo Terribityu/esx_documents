@@ -43,6 +43,7 @@ Citizen.CreateThread(function()
 
 end)
 
+--  -- ############## Uncomment this if you want to access the menu via the Config.key
 -- Citizen.CreateThread(function()
 --     while true do
 --         Citizen.Wait(0)
@@ -228,10 +229,11 @@ function DeleteDocument(aDocument)
     end, aDocument.id)
 end
 
-function CreateNewForm(documentType)
+function CreateNewForm(aDocument)
 
     PlayerData = ESX.GetPlayerData()
-    aDocument = DOCUMENT_FORMS[PlayerData.job.name][documentType]
+    documentType = aDocument
+    aDocument = DOCUMENT_FORMS[PlayerData.job.name][documentType] -- Comment this if you want to use Config.key menu
     ESX.TriggerServerCallback('esx_documents:getPlayerDetails', function (cb_player_details)
         if cb_player_details ~= nil then
             --print("Received dump : " .. dump(cb_player_details))
