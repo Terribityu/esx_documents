@@ -1,5 +1,6 @@
 Config = {}
 
+-- IF YOU WANT TO USE THE CONFIG KEY FOR MENU, UNCOMMENT LINES 46 - 78 and COMMENT LINE 236 
 Config.MenuKey 			= 182 -- "L" button, change to whatever you want
 Config.UseCustomFonts 	= false -- Leave this as is if you don't know how to or haven't loaded custom fonts.
 Config.CustomFontFile 	= "greek" -- change only if you turn custom fonts on.
