@@ -8,6 +8,7 @@ Config.Locale 			= "en" -- gr / en / br
 
 Config.Documents = {}
 
+-- ox-target Configuration
 Config.PoliceDocuments = {
     coords = vec4(440.113, -975.085, 30.580, 6.947),
     rotation = 6.947
